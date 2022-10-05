@@ -9,42 +9,37 @@
     <style>
         body{
             height: 100vh;
-            background: #6610F7;
+            background-color: #6F42BA;
             display: flex;
             align-items: center;
         }
-
+        
         .contenedor{
             width: 920px;
             height: 280px;
             margin: 0 auto;
-
+            
             position: relative;
-
-            background: linear-gradient(#b7d6c7, transparent) #ffe2d1;
-            transition: background-color is linear;
+            background: linear-gradient(#eb079f, transparent) #b7d6c7;
+            transition: background-color 1s linear;
             overflow: hidden;
         }
 
-        
-        .dino{
-
+        .dino {
             width: 84px;
             height: 84px;
 
             position: absolute;
             bottom: 22px;
-            left: 42px;
+            left: 22px;
             z-index: 2;
 
             background: url(img/dino.png) repeat-x 0px 0px;
             background-size: 336px 84px;
             background-position-x: 0px;
-
         }
 
         .suelo {
-            
             width: 200%;
             height: 42px;
 
@@ -56,34 +51,34 @@
             background-size: 50% 42px;
         }
 
-
-        .dinocorriendo{
+        .dinoCorriendo{
             animation: animaDino .25s steps(2) infinite;
         }
-            @keyframes animaDino {
-                from{
-                    background-position-x: -84px;
-                }
-                to{
-                    background-position-x: -252px;
-                }
-                
+
+        @keyframes animaDino{
+            from{
+                background-position-x: -84px;
             }
-        
+            to{
+                background-position-x: -252px
+            }
+        }
+
     </style>
+
 
 </head>
 <body>
-    <div class="contenedor"></div>
+    <div class="contenedor">
         <div class="suelo"></div>
-        <div class="dino dinocorriendo"></div>
+        <div class="dino dinoCorriendo"></div>
     </div>
 
     <script>
         var time = new Date();
         var deltaTime = 0;
-        
-        //Fisica del Juego
+
+        //Fisica del juego
         var sueloY = 22;
         var velY = 0;
         var impulso = 700;
@@ -97,27 +92,26 @@
         var gameVel = 1;
 
         var parado = false;
-        var saltando = false;
+        var saltando =  false;
 
-        var contenedor;
+        var contendeor;
         var dino;
         var suelo;
 
-        if (document.readyState === "complete" || document.readyState === "interactive"){
+        if(document.readyState === "complete" || document.readyState === "interactive"){
+           
         }
-
         else{
             Init();
         }
 
-        function loop(){
+        function Loop(){
             deltaTime = (new Date() - time) / 5000;
             time = new Date();
 
             Update();
 
-            requestAnimationFrame(loop);
-
+            requestAnimationFrame(Loop);
         }
 
         function Init(){
@@ -126,16 +120,15 @@
             contenedor = document.querySelector(".contenedor");
             dino = document.querySelector(".dino");
 
-            loop();
+            Loop();
         }
 
         function Update(){
-            sueloX += (velEscenario * deltaTime * gameVel);
+            sueloX += ( velEscenario * deltaTime * gameVel);
             suelo.style.left = -(sueloX % contenedor.clientWidth) + "px";
-
+                                                     
         }
 
     </script>
-
 </body>
 </html>
